@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "头盔",
+    "icon": 1,
+    "isShow": false,
+    "type": 2,
+    "equipSlot": 1,
+    "armorModifier": 2,
+    "damageModifier": 0
+  },
+  {
+    "id": 2,
+    "name": "板甲",
+    "icon": 2,
+    "isShow": false,
+    "type": 2,
+    "equipSlot": 1,
+    "armorModifier": 5,
+    "damageModifier": 0
+  },
+  {
+    "id": 3,
+    "name": "铁靴",
+    "icon": 3,
+    "isShow": false,
+    "type": 2,
+    "equipSlot": 1,
+    "armorModifier": 2,
+    "damageModifier": 0
+  },
+  {
+    "id": 4,
+    "name": "球形",
+    "icon": 4,
+    "isShow": false,
+    "type": 1,
+    "equipSlot": 1,
+    "armorModifier": 0,
+    "damageModifier": 0
+  },
+  {
+    "id": 5,
+    "name": "方块",
+    "icon": 2,
+    "isShow": false,
+    "type": 1,
+    "equipSlot": 1,
+    "armorModifier": 0,
+    "damageModifier": 0
+  }
+]
