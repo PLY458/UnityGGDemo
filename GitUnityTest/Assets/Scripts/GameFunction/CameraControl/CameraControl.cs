@@ -13,7 +13,7 @@ public class CameraControl :MonoBehaviour
 
     public void Start()
     {
-        m_cameraState = new CameraState(m_camera,m_target.transform,m_offestVec);
+        //m_cameraState = new CameraState(m_camera,m_target.transform,m_offestVec);
 
 
     }

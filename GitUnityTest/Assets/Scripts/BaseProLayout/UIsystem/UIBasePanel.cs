@@ -58,6 +58,7 @@ public class UIBasePanel : MonoBehaviour
             {
                 if (controlDic[controlName][i] is T)
                 {
+                    //获得所有的组件序列
                     return controlDic[controlName][i] as T;
                 }
             }

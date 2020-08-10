@@ -52,13 +52,13 @@ public class UIManagercs :BaseManeger<UIManagercs>
 
 
     /// <summary>
-    /// 显示面板
+    /// 显示面板在Canve结构层级上
     /// </summary>
     /// <typeparam name="T">面板脚步类型</typeparam>
     /// <param name="panelName">面板名</param>
     /// <param name="layer">显示层级</param>
     /// <param name="callBack">当面板加载成功，启动的回调方法</param>
-    public void showPanel<T>(string panelName, E_UI_Layer layer = E_UI_Layer.Mid, UnityAction<T> callBack = null) where  T:UIBasePanel
+    public void showPanelOnLayer<T>(string panelName, E_UI_Layer layer = E_UI_Layer.Mid, UnityAction<T> callBack = null) where  T:UIBasePanel
     {
         if (panelDic.ContainsKey(panelName))
         {
@@ -97,8 +97,6 @@ public class UIManagercs :BaseManeger<UIManagercs>
             (obj.transform as RectTransform).offsetMax = Vector2.zero;
             (obj.transform as RectTransform).offsetMin = Vector2.zero;
 
-            
-
             //得到预设体身上的面板脚步
             T panel = obj.GetComponent<T>();
             //处理面板创建完成后的逻辑
@@ -112,15 +110,49 @@ public class UIManagercs :BaseManeger<UIManagercs>
     }
 
     /// <summary>
+    /// 显示面板在指定父组件
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public void showPanelOnLayer<T>
+
+
+    /// <summary>
     /// 面板销毁
     /// </summary>
     /// <param name="panelName"></param>
-    public void HidePanel(string panelName)
+    public void DestoryPanel(string panelName)
     {
         if (panelDic.ContainsKey(panelName))
         {
             GameObject.Destroy(panelDic[panelName].gameObject);
             panelDic.Remove(panelName);
         }
+    }
+
+    /// <summary>
+    /// 获取UI界面层级
+    /// </summary>
+    /// <returns></returns>
+    public void GetUIlayer(E_UI_Layer layer, out Transform panelLayer)
+    {
+        switch (layer)
+        {
+            case E_UI_Layer.Bot:
+                panelLayer = bot;
+                break;
+            case E_UI_Layer.Mid:
+                panelLayer = mid;
+                break;
+            case E_UI_Layer.Top:
+                panelLayer = top;
+                break;
+            case E_UI_Layer.System:
+                panelLayer = system;
+                break;
+            default:
+                panelLayer = system;
+                break;
+        }
+
     }
 }
