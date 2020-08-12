@@ -14,6 +14,8 @@ public class GameDataMgr : BaseManeger<GameDataMgr>
 
     private static string SavePath_Url = Application.persistentDataPath + "/SaveInfo.txt";
 
+    public Player playerInfo;
+
     /// <summary>
     /// 初始化初始信息
     /// </summary>
@@ -30,12 +32,19 @@ public class GameDataMgr : BaseManeger<GameDataMgr>
             p_itemInfos.Add(items.info[i].id, items.info[i]);
         }
         //下面可用save和load初始化角色数据
+        playerInfo = new Player();
+        load<Player>(ref playerInfo);
+
+
     }
+
+
+
 
     /// <summary>
     /// JSON文件流存档
     /// </summary>
-    public void Save<T>( T saveTemplate)
+    public void Save<T>(ref T saveTemplate)
     {
         //示例
         string json = JsonUtility.ToJson(saveTemplate);
@@ -48,7 +57,7 @@ public class GameDataMgr : BaseManeger<GameDataMgr>
     /// JSON文件流读档
     /// 注意：loadTemplate必须已经得到实例化
     /// </summary>
-    public void load<T>(T loadTemplate)
+    public void load<T>(ref T loadTemplate)
     {
         //检测存档路径是否存在
         if (File.Exists(SavePath_Url))
@@ -60,10 +69,12 @@ public class GameDataMgr : BaseManeger<GameDataMgr>
             //在吧字符串转成需要的数据结构
             //用例：
             loadTemplate = JsonUtility.FromJson<T>(json);
+
         }
         else {
             //创建新的数据档案
-            Save<T>(loadTemplate);
+            Save<T>(ref loadTemplate);
+
         }
     }
 
@@ -89,7 +100,7 @@ public class GameDataMgr : BaseManeger<GameDataMgr>
 public class ItemInfo
 {
     public int id;
-    public int num;
+    public string name;
 }
 
 
@@ -112,8 +123,6 @@ public class Item
     public string name; // 板甲
     public string icon; // 2
     public bool isShow; // False
-    public int type; // 2
-    public int equipSlot; // 1
-    public float armorModifier; // 5
-    public float damageModifier; // 0
 }
+
+

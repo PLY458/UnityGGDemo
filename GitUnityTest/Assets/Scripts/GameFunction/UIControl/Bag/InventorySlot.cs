@@ -44,11 +44,11 @@ public class InventorySlot : UIBasePanel
     {
         Debug.Log("in");
         //显示提示面板
-        UIManagercs.GetInstance().showPanelOnLayer<InteractSlot>("TipsPanel", E_UI_Layer.Top, (tipspanel) =>
-        {
-            //异步加载结束后 去设置位置 设置信息
-            tipspanel.transform.position = GetControl<Image>("itemIcon").transform.position;
-        });
+        //UIManagercs.GetInstance().showPanelOnLayer<InteractSlot>("TipsPanel", E_UI_Layer.Top, (tipspanel) =>
+        //{
+        //    //异步加载结束后 去设置位置 设置信息
+        //    tipspanel.transform.position = GetControl<Image>("itemIcon").transform.position;
+        //});
     }
 
     private void ExitInventorySlot(BaseEventData data)
