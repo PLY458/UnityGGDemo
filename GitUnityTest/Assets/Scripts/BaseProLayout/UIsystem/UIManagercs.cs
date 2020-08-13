@@ -105,22 +105,15 @@ public class UIManagercs :BaseManeger<UIManagercs>
                 callBack(panel);
             }
             //把面板存起来
-            panelDic.Add(panelName,panel);
+            panelDic.Add(panelName, panel);
         });
     }
-
-    /// <summary>
-    /// 显示面板在指定父组件
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public void showPanelOnLayer<T>
-
 
     /// <summary>
     /// 面板销毁
     /// </summary>
     /// <param name="panelName"></param>
-    public void DestoryPanel(string panelName)
+    public void DestoryPanelInDic(string panelName)
     {
         if (panelDic.ContainsKey(panelName))
         {
@@ -133,25 +126,20 @@ public class UIManagercs :BaseManeger<UIManagercs>
     /// 获取UI界面层级
     /// </summary>
     /// <returns></returns>
-    public void GetUIlayer(E_UI_Layer layer, out Transform panelLayer)
+    public Transform GetUIlayer(E_UI_Layer layer)
     {
         switch (layer)
         {
             case E_UI_Layer.Bot:
-                panelLayer = bot;
-                break;
+                return bot;
             case E_UI_Layer.Mid:
-                panelLayer = mid;
-                break;
+                return mid;
             case E_UI_Layer.Top:
-                panelLayer = top;
-                break;
+                return top;
             case E_UI_Layer.System:
-                panelLayer = system;
-                break;
+                return system;
             default:
-                panelLayer = system;
-                break;
+                return system;
         }
 
     }
