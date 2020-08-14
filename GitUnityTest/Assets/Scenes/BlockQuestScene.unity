@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 1265480990}
   - component: {fileID: 1265480989}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1751,7 +1751,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4690
+  m_Name: pb_Mesh14258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
