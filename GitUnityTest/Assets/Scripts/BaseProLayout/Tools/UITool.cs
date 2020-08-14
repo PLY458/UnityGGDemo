@@ -5,16 +5,25 @@ using UnityEngine;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI常用工具集
+/// </summary>
 public static class UITool
 {
-    private static GameObject m_CanvasObj = null; // 場景上的2D畫布物件
+    //需要获取的场景上的画布文件
+    private static GameObject m_CanvasObj = null; 
 
+    //释放获取的画布文件
     public static void ReleaseCanvas()
     {
         m_CanvasObj = null;
     }
 
-    // 找尋限定在Canvas畫布下的UI界面
+    /// <summary>
+    /// 根据UI名找到画布下对应的UI组件
+    /// </summary>
+    /// <param name="UIName"></param>
+    /// <returns></returns>
     public static GameObject FindUIGameObject(string UIName)
     {
         if (m_CanvasObj == null)
@@ -24,23 +33,34 @@ public static class UITool
         return UnityObjectTool.FindChildGameObject(m_CanvasObj, UIName);
     }
 
-    // 取得UI元件
-    public static T GetUIComponent<T>(GameObject Container, string UIName) where T : UnityEngine.Component
+    /// <summary>
+    /// 根据组件类别寻找子UI组件
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="ParentObj"></param>
+    /// <param name="UIName"></param>
+    /// <returns></returns>
+    public static T GetUIComponent<T>(GameObject ParentObj, string UIName) where T : UnityEngine.Component
     {
         // 找出子物件 
-        GameObject ChildGameObject = UnityObjectTool.FindChildGameObject(Container, UIName);
-        if (ChildGameObject == null)
+        GameObject ChildObj = UnityObjectTool.FindChildGameObject(ParentObj, UIName);
+        if (ChildObj == null)
             return null;
 
-        T tempObj = ChildGameObject.GetComponent<T>();
+        T tempObj = ChildObj.GetComponent<T>();
         if (tempObj == null)
         {
-            Debug.LogWarning("元件[" + UIName + "]不是[" + typeof(T) + "]");
+            Debug.LogWarning("子元件[" + UIName + "]不是[" + typeof(T) + "]类型");
             return null;
         }
         return tempObj;
     }
 
+    /// <summary>
+    /// 获得对应名称的按钮组件
+    /// </summary>
+    /// <param name="BtnName"></param>
+    /// <returns></returns>
     public static Button GetButton(string BtnName)
     {
         // 取得Canvas
@@ -68,7 +88,12 @@ public static class UITool
         return null;
     }
 
-    // 取得UI元件
+    /// <summary>
+    /// 直接获取对应名称UI组件
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="UIName"></param>
+    /// <returns></returns>
     public static T GetUIComponent<T>(string UIName) where T : UnityEngine.Component
     {
         // 取得Canvas
