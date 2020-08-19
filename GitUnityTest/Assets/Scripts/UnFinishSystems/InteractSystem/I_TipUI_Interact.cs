@@ -19,7 +19,6 @@ public abstract class I_TipUI_Interact : UIBasePanel
     //需要获得的组件
     protected RectTransform local_RectTrans;
     protected CanvasGroup local_CanGroup;
-    protected Image local_ObjectIcon;
     protected Canvas parent_Canvas;
 
     //记录拖拽开始的临时坐标
@@ -69,7 +68,7 @@ public abstract class I_TipUI_Interact : UIBasePanel
     /// <summary>
     /// 如果未发生UI层转换，则重置UI的位置
     /// </summary>
-    public abstract void ReSetTheUI(bool switchTrigger);
+    public virtual void ReSetTheUI(bool switchTrigger) { }
 
     /// <summary>
     /// 设定UI拥有者
@@ -78,14 +77,6 @@ public abstract class I_TipUI_Interact : UIBasePanel
     public void SetOwner(I_Object_Interact Owner)
     {
         m_InteractObject = Owner;
-    }
-
-    /// <summary>
-    /// 设定显示的Icon
-    /// </summary>
-    public void SetIcon(Image Icon)
-    {
-        local_ObjectIcon = Icon;
     }
 
     #region UI预制体操作

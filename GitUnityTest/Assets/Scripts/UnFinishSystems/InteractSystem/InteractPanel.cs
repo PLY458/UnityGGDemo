@@ -13,7 +13,7 @@ public class InteractPanel : UIBasePanel, IDropHandler
     private InteractSlot templateTips;
     
 
-    public void InitPanel()
+    protected override void InitPanel()
     {
         //注册格子操作的各项事件
         EventCenter.GetInstance().AddEventListener("SubtractSlot", SubtractInteractSlot);

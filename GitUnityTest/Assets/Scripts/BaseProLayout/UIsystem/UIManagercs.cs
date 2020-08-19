@@ -95,7 +95,7 @@ public class UIManagercs :BaseManeger<UIManagercs>
             obj.transform.localScale = Vector3.one;
 
             (obj.transform as RectTransform).offsetMax = Vector2.zero;
-            (obj.transform as RectTransform).offsetMin = Vector2.zero;
+            (obj.transform as RectTransform).offsetMin = Vector2.one;
 
             //得到预设体身上的面板脚步
             T panel = obj.GetComponent<T>();

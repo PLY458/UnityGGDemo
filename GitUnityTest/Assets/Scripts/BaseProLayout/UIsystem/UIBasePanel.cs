@@ -28,6 +28,16 @@ public class UIBasePanel : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// 必要的面板初始化
+    /// </summary>
+    protected virtual void InitPanel()
+    {
+
+    }
+
+
     /// <summary>
     /// 显示面板
     /// </summary>
