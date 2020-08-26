@@ -22,6 +22,8 @@ public abstract class IBall:MonoBehaviour
 
     protected float movSpeed;
     protected float rayDistance;
+    protected IBrick m_ownerbrick = null;
+    protected GameObject ballself;
 
     public Vector3 MoveDir { get => moveDir; set => moveDir = value; }
     public E_Ball_Type Type_ball { get => type_ball; set => type_ball = value; }
@@ -62,14 +64,37 @@ public abstract class IBall:MonoBehaviour
         //根据不同Tag下有不同策略
         if (touchObj.tag == "MoveBar")
         {
-            Vector3 barMove = touchObj.GetComponent<MoveBar>().GetBarMov();
-            Debug.Log("反弹板的速度：" + barMove);
-            result += barMove;
+            //Vector3 barMove = touchObj.GetComponent<Rigidbody>().velocity;
+            //Debug.Log("反弹板的速度：" + barMove);
+            //result += barMove;
         }
-        else if(touchObj.tag == "Brick")
+        else if (touchObj.tag == "Brick")
         {
-            EventCenter.GetInstance().EventTrigger<IBrick>("处理被打击的砖块", touchObj.GetComponent<IBrick>());
+            BrickMgr.GetInstance().OperateBrick(touchObj.GetComponent<IBrick>(), Type_ball);
+        }
+        else if (touchObj.tag == "BotWall")
+        {
+            BrickMgr.GetInstance().PlayerHealth--;
         }
         MoveDir = result.normalized;
+    }
+
+    protected virtual void MovePosition()
+    {
+        ball_rid.MovePosition(transform.position + MoveDir * movSpeed * Time.deltaTime);
+    }
+
+    public void SetOwner(IBrick Owner)
+    {
+        m_ownerbrick = Owner;
+    }
+
+    /// <summary>
+    /// 对外使用的销毁方法
+    /// </summary>
+    public void Release()
+    {
+        if (ballself != null)
+            GameObject.Destroy(ballself);
     }
 }

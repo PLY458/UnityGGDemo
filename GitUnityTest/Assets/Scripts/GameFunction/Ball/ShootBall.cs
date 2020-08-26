@@ -10,10 +10,11 @@ public class ShootBall : IBall
     {
         ball_rid = GetComponent<Rigidbody>();
         Type_ball = E_Ball_Type.Basic;
-        movSpeed = 5.0f;
+        movSpeed = 8.0f;
         rayDistance = 0.5f;
+        ballself = transform.gameObject;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         InitBall();
@@ -22,7 +23,7 @@ public class ShootBall : IBall
 
     void FixedUpdate()
     {
-        ball_rid.MovePosition(transform.position + MoveDir * movSpeed * Time.deltaTime);
+        MovePosition();
         RayToInspect();
     }
 

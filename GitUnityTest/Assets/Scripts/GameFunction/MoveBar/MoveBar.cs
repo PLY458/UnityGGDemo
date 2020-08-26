@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveBar : MonoBehaviour
 {
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10f;
     private bool IsShoot = false;
 
     public GameObject ball;
@@ -40,6 +40,7 @@ public class MoveBar : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         MovePostion();
     }
 
@@ -51,7 +52,11 @@ public class MoveBar : MonoBehaviour
 
     public void MovePostion()
     {
-        board_rid.MovePosition(board_rid.position + direct * moveSpeed * Time.fixedDeltaTime);
+        
+        //if (Mathf.Abs(direct.x) > 0.1f)
+        PhysicsHelper.GetInstance().ApplyForceToReachVelocity(board_rid, direct * moveSpeed, 2.5f, ForceMode.Force);
+        //board_rid.MovePosition(board_rid.position + direct * moveSpeed * Time.fixedDeltaTime);
+
         if (!IsShoot)
         {
             ball.transform.position = transform.position + shootPos;
@@ -82,8 +87,5 @@ public class MoveBar : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + shootPos, 0.5f);
     }
 
-    public Vector3 GetBarMov()
-    {
-        return direct * moveSpeed;
-    }
+
 }

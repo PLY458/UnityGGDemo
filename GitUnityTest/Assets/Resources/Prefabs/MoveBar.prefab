@@ -49,10 +49,10 @@ MonoBehaviour:
   moveSpeed: 3
   ball: {fileID: 5974739315591702257, guid: 69fe76a5843a59948bdfa2fe0abbbdbc, type: 3}
   shootPos: {x: 0, y: 0, z: 1}
-  board: {fileID: 2671383107570262023}
+  direct: {x: 0, y: 0, z: 0}
   minPosX: -0.4
   maxPosX: 0.4
-  minPosZ: 0.4
+  minPosZ: 0.2
   maxPosZ: 1
 --- !u!54 &2671383107570262072
 Rigidbody:

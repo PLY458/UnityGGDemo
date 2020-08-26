@@ -28,7 +28,7 @@ public class OpenMenu : UIBasePanel
     
     void Update()
     {
-        
+        FinishAnime();
     }
 
     public void StartGame()
@@ -36,11 +36,20 @@ public class OpenMenu : UIBasePanel
         Debug.Log("背景动画机：" + animatorBkg);
         bool isOpen = animatorBkg.GetBool("Open");
         animatorBkg.SetBool("Open", !isOpen);
-        
+    }
+
+    public void FinishAnime()
+    {
+        AnimatorStateInfo stateInfo = animatorBkg.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Opening") && stateInfo.normalizedTime >= 1.0f)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void EndGame()
     {
-
+        Debug.Log("确认退出！");
+        Application.Quit();
     }
 }

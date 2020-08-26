@@ -1,44 +1,50 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BrickMgr : BaseManeger<BrickMgr>
 {
     private float playerScore;
+    private int playerHealth;
 
     public float PlayerScore { get => playerScore; set => playerScore = value; }
+    public int PlayerHealth { get => playerHealth; set => playerHealth = value; }
+
+    /// <summary>
+    /// 记录带颜色砖块
+    /// </summary>
+    private Dictionary<E_Brick_Type, IBrick> brickDic = new Dictionary<E_Brick_Type, IBrick>();
 
     /// <summary>
     /// 接收Brick实体，判断类型，做出操作
     /// </summary>
     /// <param name="brick"></param>
-    public void OperateBrick(IBrick brick)
+    public void OperateBrick(IBrick brick,E_Ball_Type ball_type)
     {
-        brick.Health_Brick--;
-        if (brick.Health_Brick <= 0)
-        {
-            switch (brick.Type_Brick)
+            brick.Health_Brick--;
+            if (brick.Type_Brick == E_Brick_Type.Basic)
             {
-                case E_Brick_Type.Basic:
-                    PlayerScore += brick.Score_Brick;
-                    brick.ReleaseBrickObject();
-                    break;
-                case E_Brick_Type.Freeze:
-                    PlayerScore += brick.Score_Brick;
+                PlayerScore += brick.ReleaseBrickObject();
+            }
+            else if (brick.Type_Brick == E_Brick_Type.Freeze)
+            {
+                brick.RayInspectRound();
+                brick.LoadAndShootBall();
+                PlayerScore += brick.ReleaseBrickObject();
+            }
+            else {
                     brick.RayInspectRound();
                     brick.LoadAndShootBall();
-                    brick.ReleaseBrickObject();
-                    break;
+                    PlayerScore += brick.ReleaseBrickObject();
             }
-        }
-
 
     }
+
 
     public void InitMgr()
     {
         playerScore = 0.0f;
-        Debug.Log("玩家初始分数：" + (int)playerScore);
-        EventCenter.GetInstance().AddEventListener<IBrick>("处理被打击的砖块", OperateBrick);
+        playerHealth = 3;
     }
 
-    
+
 }
